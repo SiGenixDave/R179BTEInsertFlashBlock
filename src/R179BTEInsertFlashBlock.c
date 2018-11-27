@@ -24,6 +24,8 @@ int main(void) {
     unsigned loopIndex = 0;
     char fileBuffer[200];
 
+    puts("Flash Walking 1's and 0's Table Insertion tool... Version 1.0\n");
+
     if (fpInput == NULL)
     {
         puts("File \"r179.hex\" doen't exist... Exiting program");
@@ -36,12 +38,12 @@ int main(void) {
     }
 
 
-    const char *insertTable[] =    {"020000040012",                                 /* Base Address 0x120000 */
+    const char *insertTable[] =    {"020000040011",                                 /* Base Address 0x120000 */
                                      "1000000000000001000200040008001000200040",     /* Data */
-                                     "1000080000800100020004000800100020004000",     /* Data */
-                                     "100010008000FFFFFFFEFFFDFFFBFFF7FFEFFFDF",     /* Data */
-                                     "10001800FFBFFF7FFEFFFDFFFBFFF7FFEFFFDFFF",     /* Data */
-                                     "04002000BFFF7FFF", };                          /* Data */
+                                     "1000100000800100020004000800100020004000",     /* Data */
+                                     "100020008000FFFFFFFEFFFDFFFBFFF7FFEFFFDF",     /* Data */
+                                     "10003000FFBFFF7FFEFFFDFFFBFFF7FFEFFFDFFF",     /* Data */
+                                     "04004000BFFF7FFF", };                          /* Data */
 
     fseek( fpInput, 0, SEEK_SET );
     fseek( fpOutput, 0, SEEK_SET );
@@ -74,13 +76,18 @@ static unsigned char GenerateChecksum(const char *str)
     {
         char hexString[3];
         unsigned char val;
+        /* Copy the next 2 nibbles */
         strncpy(hexString, &str[index], 2);
+        /* terminate the string since strncpy doesn't */
         hexString[2] = '\0';
+        /* Convert string to hexadecimal byte */
         val = (unsigned char)strtol(hexString, NULL, 16);
+        /* Accumulate and increment the index to the next 2 nibbles */
         csum += val;
         index += 2;
     }
 
+    /* Create the 2's complement by inverting all bits and adding 1 */
     csum = csum ^ 0xFF;
     csum++;
     return (csum);
