@@ -52,7 +52,7 @@ int main(void) {
         fprintf (fpOutput, ":%s%02X\n", insertTable[loopIndex], GenerateChecksum(insertTable[loopIndex]));
     }
 
-    /* Now append the entire original hex file */
+    /* Now append the entire original hex file by */
     while (fgets(fileBuffer, BUFFER_SIZE, fpInput) != NULL)
     {
         fprintf (fpOutput, "%s", fileBuffer);
