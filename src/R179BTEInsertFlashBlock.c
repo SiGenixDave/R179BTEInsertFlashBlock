@@ -24,7 +24,7 @@ int main(void) {
     unsigned loopIndex = 0;
     char fileBuffer[200];
 
-    puts("Flash Walking 1's and 0's Table Insertion tool... Version 1.0\n");
+    puts("Flash Walking 1's and 0's Table Insertion tool... Version 1.1\n");
 
     if (fpInput == NULL)
     {
@@ -39,11 +39,11 @@ int main(void) {
 
 
     const char *insertTable[] =    {"020000040011",                                 /* Base Address 0x120000 */
-                                     "1000000000000001000200040008001000200040",     /* Data */
-                                     "1000100000800100020004000800100020004000",     /* Data */
-                                     "100020008000FFFFFFFEFFFDFFFBFFF7FFEFFFDF",     /* Data */
-                                     "10003000FFBFFF7FFEFFFDFFFBFFF7FFEFFFDFFF",     /* Data */
-                                     "04004000BFFF7FFF", };                          /* Data */
+                                     "1000000000000100020004000800100020004000",     /* Data */
+                                     "1000100080000001000200040008001000200040",     /* Data */
+                                     "100020000080FFFFFEFFFDFFFBFFF7FFEFFFDFFF",     /* Data */
+                                     "10003000BFFF7FFFFFFEFFFDFFFBFFF7FFEFFFDF",     /* Data */
+                                     "04004000FFBFFF7F", };                          /* Data */
 
     fseek( fpInput, 0, SEEK_SET );
     fseek( fpOutput, 0, SEEK_SET );
